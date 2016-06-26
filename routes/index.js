@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'D3 Genealogy' });
+  res.render('index', { title: 'D3 Genealogy', name: "Cathy" });
 });
 
 module.exports = router;

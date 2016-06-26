@@ -13,7 +13,7 @@ app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 app.use('/', routes);
 app.use('/users', users);
@@ -50,6 +50,6 @@ app.use(function(err, req, res, next) {
 });
 
 app.listen(port);
-console.log('Server is Up and Running at Port : ' + port);
+console.log('Server is up and running at port : ' + port);
 
 module.exports = app;
