@@ -4,6 +4,9 @@ var path = require('path');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+var Sequelize = require('sequelize');
+var models = require('./models');
+
 var port = 3000;
 
 var app = express();
@@ -15,6 +18,9 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(express.static(path.join(__dirname, '/public')));
 
+
+
+// routes setup
 app.use('/', routes);
 app.use('/users', users);
 
@@ -49,7 +55,11 @@ app.use(function(err, req, res, next) {
   });
 });
 
-app.listen(port);
-console.log('Server is up and running at port : ' + port);
+// db setup
+models.sequelize.sync().then(function () {
+  var server = app.listen(app.get('port'), function() {
+    console.log('Express server listening on port ' + server.address().port);
+  });
+});
 
 module.exports = app;
