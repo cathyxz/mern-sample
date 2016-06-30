@@ -1,5 +1,6 @@
 var express = require('express');
 var path = require('path');
+var debug = require('debug');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -12,13 +13,12 @@ var port = 3000;
 var app = express();
 
 // view engine setup
+app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(express.static(path.join(__dirname, '/public')));
-
-
 
 // routes setup
 app.use('/', routes);
